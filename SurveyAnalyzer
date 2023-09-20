@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace SurveyAnalyzer
+{
+    public partial class MainForm : Form
+    {
+        private List<string> questions = new List<string>();
+        private List<string> responses = new List<string>();
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void AddQuestionButton_Click(object sender, EventArgs e)
+        {
+            string question = QuestionTextBox.Text;
+            questions.Add(question);
+            QuestionTextBox.Text = "";
+        }
+
+        private void AnalyzeButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < questions.Count; i++)
+            {
+                string question = questions[i];
+                string response = responses[i];
+                ResultsListBox.Items.Add($"Вопрос: {question}");
+                ResultsListBox.Items.Add($"Ответ: {response}");
+                ResultsListBox.Items.Add("");
+            }
+        }
+
+        private void AddResponseButton_Click(object sender, EventArgs e)
+        {
+            string response = ResponseTextBox.Text;
+            responses.Add(response);
+            ResponseTextBox.Text = "";
+        }
+    }
+}
